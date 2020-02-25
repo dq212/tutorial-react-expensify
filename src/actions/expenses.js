@@ -17,7 +17,6 @@ export const addExpense = (expense) =>({
     expense
 })
   
-
 export const startAddExpense = (expenseData ={}) => {
         return (dispatch) =>{
             const {
@@ -50,9 +49,22 @@ export const startAddExpense = (expenseData ={}) => {
 
 
     //SET_EXPENSES
-    export const setExpenses =(epenses) =>({
+    export const setExpenses = (expenses) =>({
         type:'SET_EXPENSES',
         expenses
     });
 
-    // export const startSetExpenes;
+    export const startSetExpenses = () => {
+        return (dispatch) =>{
+           return db.ref('expenses').once('value').then((snapshot)=>{
+                const expenses = [];
+                snapshot.forEach((childSnapshot)=>{
+                    expenses.push({
+                        id:childSnapshot.key,
+                        ...childSnapshot.val()
+                    })
+                })
+                dispatch(setExpenses(expenses));
+            })
+        }
+    };
