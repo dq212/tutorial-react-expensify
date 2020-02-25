@@ -67,3 +67,7 @@ test ('should not edit an expense', ()=>{
     const state = expensesReducer(expenses, action);
     expect(state).toEqual(expenses);
 })
+
+test('should set expenses', ()=>{
+    
+})
