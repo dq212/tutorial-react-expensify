@@ -1,6 +1,8 @@
 import expensesReducer from '../../reducers/expenses';
 import expenses from '../fixtures/expenses';
 import uuid from 'uuid'
+import createMockStore from 'redux-mock-store';
+import { startRemoveExpense } from '../../actions/expenses';
 
 
 test('should setup default state of expense reducer', ()=>{
@@ -8,14 +10,13 @@ test('should setup default state of expense reducer', ()=>{
     expect(state).toEqual([]);
 })
 
-test('should remove expense by id', ()=>{
-    const action = {
-        type:'REMOVE_EXPENSE',
-        id: expenses[1].id
-    }
-    const state = expensesReducer(expenses, action);
-    expect(state).toEqual([expenses[0], expenses[2]]);
-})
+
+
+// test('should remove expense from firevase', (done)=>{
+//     const store = createMockStore({});
+//     const id = expenses[2].id;
+//     store.dispatch(startRemoveExpense({id}))
+// })
 
 test('should not remove id not found', ()=>{
     const action = {
@@ -76,3 +77,4 @@ test('should set expenses', () =>{
     const state = expensesReducer(expenses, action);
     expect(state).toEqual([expenses[1]])
 })
+
