@@ -12,11 +12,14 @@ const config = {
     measurementId: process.env.FIREBASE_MEASUREMENT_ID
   };
 
+
+
   firebase.initializeApp(config);
 
   const db = firebase.database();
+  const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-  export {firebase, db as default};
+  export {firebase, googleAuthProvider, db as default};
 
 //   db.ref('expenses').on('child_removed', (snapshot)=>{
 //       console.log('removed item',snapshot.key, snapshot.val())

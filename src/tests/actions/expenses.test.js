@@ -53,7 +53,6 @@ test('should setup edit expense action object', ()=>{
         updates:{
             note: 'some note'
         }
-
     })
 });
 
@@ -73,7 +72,6 @@ test('should edit expense from firebase', (done)=>{
         expect(snapshot.val().amount).toBe(updates.amount);
         done();
     })
-
 })
 
 test('should setup add expense acion object with provided values', () => {
